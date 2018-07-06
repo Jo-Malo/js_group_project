@@ -9,7 +9,7 @@ MongoClient.connect('mongodb://localhost:27017', (err, client) => {
   const db = client.db('cryptid_hub');
   const cryptidCollection = db.collection('cryptids');
   const cryptidRouter = createRouter(cryptidCollection);
-  app.use('/api/cryptid', cryptidRouter);
+  app.use('/api/cryptids', cryptidRouter);
 });
 
 const publicPath = path.join(__dirname, '../client/public');
