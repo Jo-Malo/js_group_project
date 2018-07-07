@@ -13,5 +13,9 @@ db.cryptids.insertMany([
   {
     name: "chupacabra",
     coords: [18.2208, -66.5901]
+  },
+  {
+    name: "Bunyip",
+    coords: [-25.2744, 133.7751]
   }
 ]);

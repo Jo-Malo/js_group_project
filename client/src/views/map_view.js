@@ -28,7 +28,15 @@ MapView.prototype.bindEvents = function() {
 }
 MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
+  console.log(marker)
   marker.bindPopup(`${cryptid.name}`).openPopup();
+
+  marker.on('click', function(evt){
+    const ourMap = evt.target._map
+    const latLong = evt.target._latlng
+    ourMap.setView(latLong, 10)
+  });
   marker.addTo(this.myMap)
 };
- module.exports = MapView;
+
+module.exports = MapView;
