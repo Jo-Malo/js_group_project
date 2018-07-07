@@ -10,7 +10,6 @@ const Cryptid = function(url) {
    const request = new Request(this.url)
    request.get()
     .then((data) => {
-      console.log(data);
       PubSub.publish('Cryptid:data-loaded', data);
     });
  };

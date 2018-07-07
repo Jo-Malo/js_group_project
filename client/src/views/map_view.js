@@ -20,10 +20,8 @@ MapView.prototype.renderMap = function() {
 
 MapView.prototype.bindEvents = function() {
   PubSub.subscribe('Cryptid:data-loaded', (evt) => {
-    console.log(evt.detail);
     const cryptids = evt.detail;
     cryptids.forEach((cryptid) => {
-      console.log(cryptid);
       this.renderPin(cryptid);
     })
   });
@@ -32,7 +30,5 @@ MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
   marker.bindPopup(`${cryptid.name}`).openPopup();
   marker.addTo(this.myMap)
-  console.log(this.myMap);
-  console.dir(this.myMap);
 };
  module.exports = MapView;
