@@ -1,14 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js');
+const Leaflet = require('leaflet');
 
-const CryptidView = function(){
+const CryptidView = function() {
 
-};
-
-CryptidView.prototype.bindEvent = function () {
-  PubSub.subscribe('Cryptid:data-loaded', (evt) => {
-    console.log(evt.detail);
-    // this.render(evt.detail);
-  });
 };
 
 

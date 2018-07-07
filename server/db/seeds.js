@@ -3,6 +3,7 @@ db.dropDatabase();
 
 db.cryptids.insertMany([
   {
-    name: "Nessie"
+    name: "Nessie",
+    coords: [57.322857, -4.424382]
   }
 ]);
