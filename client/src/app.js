@@ -1,10 +1,18 @@
-const Map = require('./models/map.js');
+const Cryptid = require('./models/cryptid.js');
+const CryptidView = require('./views/cryptid_view.js');
+const MapView = require('./views/map_view.js');
+
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Javascript Loaded');
 
   const url = 'http://localhost:3000/api/cryptids';
-  const map = new Map(url);
-  map.getData();
+  const cryptid = new Cryptid(url);
+  cryptid.getData();
 
 
+  const cryptidView = new CryptidView();
+  cryptidView.bindEvent();
+
+  const mapView = new MapView();
+  mapView.renderMap();
 });
