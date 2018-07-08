@@ -1,14 +1,16 @@
 const Leaflet = require('leaflet');
 const PubSub = require('../helpers/pub_sub.js');
+const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
   this.myMap = Leaflet.map('map').setView([1, 1], 2);
 
+
+  console.log(LeafletSidebar);
+  console.log(Leaflet);
 }
 
 MapView.prototype.renderMap = function() {
-
-
 
   Leaflet.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -26,23 +28,29 @@ MapView.prototype.bindEvents = function() {
     })
   });
 }
+
 MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
-  console.log(marker)
 
   marker.on('click', function(evt){
     const ourMap = evt.target._map
     const latLong = evt.target._latlng
     ourMap.setView(latLong, 10)
   });
+
   marker.on('mouseover', function(evt){
     marker.bindPopup(`${cryptid.name}`).openPopup();
   })
-  marker.on('mouseout', function(evt){
-    marker.closePopup();
-  })
 
   marker.addTo(this.myMap)
+};
+
+MapView.prototype.renderSidebar = function() {
+  const ourSidebar = Leaflet.control.sidebar('sidebar', {
+    position: 'left'
+  });
+  console.log(Leaflet.control);
+  this.myMap.addControl(ourSidebar);
 };
 
 module.exports = MapView;

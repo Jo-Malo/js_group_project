@@ -11,5 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mapView = new MapView();
   mapView.renderMap();
+  mapView.renderSidebar();
   mapView.bindEvents();
 });
