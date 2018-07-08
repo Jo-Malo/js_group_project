@@ -19,4 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const directoryListContainer = document.querySelector('#sidebar-list')
   const directoryView = new DirectoryView(directoryListContainer);
   directoryView.bindEvents();
+
+  const cryptidContainer = document.querySelector('#cryptid-container')
+  console.log(cryptidContainer);
+  const cryptidView = new CryptidView(cryptidContainer);
+  cryptidView.bindEvents();
 });
