@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const url = 'http://localhost:3000/api/cryptids';
   const cryptid = new Cryptid(url);
   cryptid.getData();
+  cryptid.bindEvents();
 
   const mapView = new MapView();
   mapView.renderMap();
