@@ -5,7 +5,9 @@ const LeafletSidebar = require('leaflet-sidebar');
 const MapView = function() {
   this.myMap = Leaflet.map('map',{
     zoomControl:false
-  }).setView([22, 180], 2);
+  }).setView([22, 170], 2);
+  // 22 ++ set the map down, 170 ++ set map to the left
+
 }
 
 MapView.prototype.renderMap = function() {
