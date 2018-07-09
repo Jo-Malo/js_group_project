@@ -41,25 +41,34 @@ MapView.prototype.zoomIn = function(){
   PubSub.subscribe('Cryptid:data-selected',(evt) =>{
     const cryptid = evt.detail;
     const latlong = cryptid[0].coords;
-    console.log(latlong);
+    const marker = Leaflet.marker(latlong);
+
     this.myMap.setView(latlong,10);
 
+    //still not showing when zoomIn
+    // marker.unbindPopup();
+    // const popup = marker.bindPopup("<img src='" + `${cryptid[0].imageSrc}` + "'" + " class='popupImage' " + "/>");
+    // popup.openPopup();
+    // console.log(popup);
   });
 
 };
 
 MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
-
   marker.on('click', (evt) => {
     const marker = evt.target;
     const ourMap = evt.target._map
     const latLong = evt.target._latlng
+
     ourMap.setView(latLong, 10);
     // this allows new popup with image to be created after closing previous popup
     marker.unbindPopup();
     const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class='popupImage' " + "/>");
+    console.log(popup);
     popup.openPopup();
+    
+    PubSub.publish('MapView: Pin-Selected', cryptid)
   });
 
 

@@ -17,7 +17,7 @@ Cryptid.prototype.bindEvents = function () {
   });
 };
 
- Cryptid.prototype.getData = function() {
+Cryptid.prototype.getData = function() {
    const request = new Request(this.url)
    request.get()
     .then((data) => {
@@ -25,4 +25,10 @@ Cryptid.prototype.bindEvents = function () {
     });
  };
 
+Cryptid.prototype.showCryptidOnSidebar = function () {
+  PubSub.subscribe('MapView: Pin-Selected', (evt)=>{
+    const cryptid = [evt.detail];
+    PubSub.publish('Cryptid:data-selected', cryptid);
+  })
+};
 module.exports = Cryptid;

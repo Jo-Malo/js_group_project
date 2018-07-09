@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cryptid = new Cryptid(url);
   cryptid.getData();
   cryptid.bindEvents();
+  cryptid.showCryptidOnSidebar();
 
   const mapView = new MapView();
   mapView.renderMap();
