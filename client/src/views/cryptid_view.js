@@ -14,6 +14,8 @@ CryptidView.prototype.bindEvents = function () {
     this.cryptidContainer.appendChild(newNameHeader);
     const newDescription = this.createNewElement('p', cryptidData.desc);
     this.cryptidContainer.appendChild(newDescription);
+    const newImage = this.createElement('', cryptidData.imageSrc);
+    this.cryptidContainer.appendChild(newImage);
   })
 };
 
