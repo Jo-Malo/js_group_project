@@ -13,15 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const mapView = new MapView();
   mapView.renderMap();
-  // mapView.renderSidebar();
+  mapView.renderSidebar();
   mapView.bindEvents();
 
-  const directoryListContainer = document.querySelector('#sidebar-list')
-  const directoryView = new DirectoryView(directoryListContainer);
+  const container = document.querySelector('#sidebar-list')
+  const directoryView = new DirectoryView(container);
   directoryView.bindEvents();
 
-  const cryptidContainer = document.querySelector('#cryptid-container')
-  console.log(cryptidContainer);
-  const cryptidView = new CryptidView(cryptidContainer);
+
+  const cryptidView = new CryptidView(container);
   cryptidView.bindEvents();
 });

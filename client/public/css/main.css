@@ -2,3 +2,16 @@
   height: 600px;
   z-index: 0;
 }
+
+#sidebar{
+  color : white;
+  background:
+  position: absolute;
+  top: 10px;
+  bottom: 50px;
+  left: 10Px;
+  width: 200px;
+  overflow: scroll;
+  z-index: 2000;
+  float:left;
+}

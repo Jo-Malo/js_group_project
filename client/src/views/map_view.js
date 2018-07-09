@@ -1,9 +1,9 @@
 const Leaflet = require('leaflet');
 const PubSub = require('../helpers/pub_sub.js');
-const LeafletSidebar = require('leaflet-sidebar-v2');
+const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
-  this.myMap = Leaflet.map('map').setView([1, 1], 2);
+  this.myMap = Leaflet.map('map').setView([10, 190], 2);
 
 
   console.log(LeafletSidebar);
@@ -45,15 +45,14 @@ MapView.prototype.renderPin = function(cryptid) {
   marker.addTo(this.myMap)
 };
 
-// may look into this if have time
 
-// MapView.prototype.renderSidebar = function() {
-//   const ourSidebar = Leaflet.control.sidebar('sidebar', {
-//     position: 'left'
-//   });
-//   console.log(ourSidebar);
-//   ourSidebar.toggle();
-//   this.myMap.addControl(ourSidebar);
-// };
+MapView.prototype.renderSidebar = function() {
+  const ourSidebar = Leaflet.control.sidebar('sidebar', {
+    position: 'left'
+  });
+  this.myMap.addControl(ourSidebar);
+  ourSidebar.show();
+};
+
 
 module.exports = MapView;
