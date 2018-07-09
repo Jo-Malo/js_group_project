@@ -3,7 +3,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
-  this.myMap = Leaflet.map('map').setView([10, 190], 2);
+  this.myMap = Leaflet.map('map').setView([11, 190], 3);
 
 
   console.log(LeafletSidebar);
@@ -14,7 +14,8 @@ MapView.prototype.renderMap = function() {
 
   Leaflet.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 10,
+    maxZoom: 6,
+    minZoom: 3,
     id: 'mapbox.satellite',
     accessToken: 'pk.eyJ1Ijoiam9tYWxvIiwiYSI6ImNqajlxenFjdjMzZGYza3BndDF0cHJwNG8ifQ.GxdRYwwkA1aQ4I4R1sOt3Q'
   }).addTo(this.myMap);

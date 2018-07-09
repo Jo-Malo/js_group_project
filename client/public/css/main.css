@@ -1,9 +1,10 @@
 #map {
-  height: 600px;
+  height: 100vh;//100% view height
+  width: 100vw;// 100% view width
   z-index: 0;
 }
 
-#sidebar{
+#sidebar {
   color : white;
   background:
   position: absolute;
