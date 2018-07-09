@@ -9,6 +9,7 @@ CryptidView.prototype.bindEvents = function () {
   PubSub.subscribe('Cryptid:data-selected', (evt) => {
     const cryptidData = evt.detail[0];
     console.log(cryptidData);
+    this.cryptidContainer.innerHTML = "";
     const newNameHeader = this.createNewElement('h2', cryptidData.name);
     this.cryptidContainer.appendChild(newNameHeader);
     const newDescription = this.createNewElement('p', cryptidData.desc);
