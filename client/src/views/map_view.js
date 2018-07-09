@@ -7,7 +7,6 @@ const MapView = function() {
     zoomControl:false
   }).setView([22, 170], 2);
   // 22 ++ set the map down, 170 ++ set map to the left
-
 }
 
 MapView.prototype.renderMap = function() {
@@ -38,6 +37,17 @@ MapView.prototype.bindEvents = function() {
   });
 }
 
+MapView.prototype.zoomIn = function(){
+  PubSub.subscribe('Cryptid:data-selected',(evt) =>{
+    const cryptid = evt.detail;
+    const latlong = cryptid[0].coords;
+    console.log(latlong);
+    this.myMap.setView(latlong,10);
+
+  });
+
+};
+
 MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
 
@@ -45,20 +55,11 @@ MapView.prototype.renderPin = function(cryptid) {
     const marker = evt.target;
     const ourMap = evt.target._map
     const latLong = evt.target._latlng
-    ourMap.setView(latLong, 10)
-    const insideMarker = Leaflet.marker(cryptid.coords);
-    const  picURL2 = 'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg'
-    insideMarker.bindPopup("<img src='" + picURL2 + "'/>").openPopup();
-
-
     ourMap.setView(latLong, 10);
     // this allows new popup with image to be created after closing previous popup
     marker.unbindPopup();
-
     const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class='popupImage' " + "/>");
     popup.openPopup();
-
-    console.dir(marker);
   });
 
 
