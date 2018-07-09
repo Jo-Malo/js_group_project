@@ -5,7 +5,7 @@ const LeafletSidebar = require('leaflet-sidebar');
 const MapView = function() {
   this.myMap = Leaflet.map('map',{
     zoomControl:false
-  }).setView([11, 190], 3);
+  }).setView([22, 180], 2);
 }
 
 MapView.prototype.renderMap = function() {
@@ -16,7 +16,7 @@ MapView.prototype.renderMap = function() {
     // 1 is max zoom out, 10 is max zoom in. We have locked zoom level to between 6 + 3.
 
     maxZoom: 9,
-    minZoom: 3,
+    minZoom: 2,
     id: 'mapbox.satellite',
     accessToken: 'pk.eyJ1Ijoiam9tYWxvIiwiYSI6ImNqajlxenFjdjMzZGYza3BndDF0cHJwNG8ifQ.GxdRYwwkA1aQ4I4R1sOt3Q'
   }).addTo(this.myMap);
