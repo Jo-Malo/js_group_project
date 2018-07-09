@@ -12,16 +12,18 @@ CryptidView.prototype.bindEvents = function () {
     this.cryptidContainer.innerHTML = "";
     const newNameHeader = this.createNewElement('h2', cryptidData.name);
     this.cryptidContainer.appendChild(newNameHeader);
-    const newDescription = this.createNewElement('p', cryptidData.desc);
+    const newCountry = this.createNewElement('p', cryptidData.country,'Country:');
+    this.cryptidContainer.appendChild(newCountry);
+    const newHabitat = this.createNewElement('p', cryptidData.habitat,'Habitat:');
+    this.cryptidContainer.appendChild(newHabitat);
+    const newDescription = this.createNewElement('p', cryptidData.desc, 'Info:');
     this.cryptidContainer.appendChild(newDescription);
-    const newImage = this.createNewElement('img', cryptidData.imageSrc);
-    this.cryptidContainer.appendChild(newImage);
   })
 };
 
-CryptidView.prototype.createNewElement = function(type, content) {
+CryptidView.prototype.createNewElement = function(type, content, title="") {
   const newElement = document.createElement(type);
-  newElement.textContent = content;
+  newElement.textContent = title + ' ' + content;
   console.log(content);
   return newElement;
 };
