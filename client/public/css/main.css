@@ -1,9 +1,10 @@
 #map {
-  height: 600px;
+  height: 100vh;//100% view height
+  width: 100vw;// 100% view width
   z-index: 0;
 }
 
-#sidebar{
+#sidebar {
   color : white;
   background:
   position: absolute;
@@ -15,4 +16,16 @@
   z-index: 2000;
   float:left;
   cursor: pointer;
+}
+
+.popupImage {
+   max-width: 200px;
+   max-height: 200px;
+}
+
+div.leaflet-popup-content-wrapper{
+  /* wraps popup-content-wrapper around image */
+  display: flex;
+  flex: wrapper;
+  flex-width: wrapper;
 }
