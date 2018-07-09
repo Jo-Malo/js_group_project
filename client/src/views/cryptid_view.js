@@ -3,7 +3,6 @@ const Leaflet = require('leaflet');
 
 const CryptidView = function(cryptidContainer) {
   this.cryptidContainer = cryptidContainer;
-  console.log(this.cryptidContainer);
 };
 
 CryptidView.prototype.bindEvents = function () {
@@ -14,7 +13,7 @@ CryptidView.prototype.bindEvents = function () {
     this.cryptidContainer.appendChild(newNameHeader);
     const newDescription = this.createNewElement('p', cryptidData.desc);
     this.cryptidContainer.appendChild(newDescription);
-    const newImage = this.createElement('', cryptidData.imageSrc);
+    const newImage = this.createNewElement('img', cryptidData.imageSrc);
     this.cryptidContainer.appendChild(newImage);
   })
 };
