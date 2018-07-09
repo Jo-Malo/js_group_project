@@ -3,7 +3,9 @@ const PubSub = require('../helpers/pub_sub.js');
 const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
-  this.myMap = Leaflet.map('map').setView([11, 190], 3);
+  this.myMap = Leaflet.map('map',{
+    zoomControl:false
+  }).setView([11, 190], 3);
 }
 
 MapView.prototype.renderMap = function() {
@@ -39,17 +41,14 @@ MapView.prototype.renderPin = function(cryptid) {
 
   marker.on('click', (evt) => {
     const marker = evt.target;
-
-    console.dir(marker);
     const ourMap = evt.target._map
     const latLong = evt.target._latlng
-<<<<<<< HEAD
     ourMap.setView(latLong, 10)
     const insideMarker = Leaflet.marker(cryptid.coords);
     const  picURL2 = 'http://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg'
     insideMarker.bindPopup("<img src='" + picURL2 + "'/>").openPopup();
 
-=======
+
     ourMap.setView(latLong, 10);
     // this allows new popup with image to be created after closing previous popup
     marker.unbindPopup();
@@ -58,7 +57,6 @@ MapView.prototype.renderPin = function(cryptid) {
     popup.openPopup();
 
     console.dir(marker);
->>>>>>> e75983c41a1e5f61a85296f98bb7530af51905bf
   });
 
 
