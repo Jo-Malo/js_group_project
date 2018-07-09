@@ -29,6 +29,7 @@ DirectoryView.prototype.populateDirectory = function() {
 
 DirectoryView.prototype.createNewElement = function(type, content) {
   const newElement = document.createElement(type);
+  // newElement.classList.add('cryptidname');
   newElement.textContent = content;
 
   return newElement;

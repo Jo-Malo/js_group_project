@@ -17,6 +17,9 @@
   float:left;
   cursor: pointer;
 }
+.sidebar li:hover {
+    color: #DAF7A6;
+}
 
 .popupImage {
    max-width: 200px;
