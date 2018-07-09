@@ -3,7 +3,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
-  this.myMap = Leaflet.map('map').setView([10, 190], 2);
+  this.myMap = Leaflet.map('map').setView([11, 190], 2);
 
 
   console.log(LeafletSidebar);
