@@ -41,7 +41,8 @@ MapView.prototype.renderPin = function(cryptid) {
     ourMap.setView(latLong, 10);
     // this allows new popup with image to be created after closing previous popup
     marker.unbindPopup();
-    const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'/>");
+
+    const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class=popupImage " + "/>");
     popup.openPopup();
 
     console.dir(marker);
@@ -49,6 +50,7 @@ MapView.prototype.renderPin = function(cryptid) {
 
 
   marker.on('mouseover', function(evt){
+    marker.unbindPopup();
     marker.bindPopup(`${cryptid.name}`).openPopup();
   })
 
