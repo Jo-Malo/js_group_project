@@ -3,11 +3,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
-  this.myMap = Leaflet.map('map').setView([10, 190], 3);
-
-
-  console.log(LeafletSidebar);
-  console.log(Leaflet);
+  this.myMap = Leaflet.map('map').setView([11, 190], 3);
 }
 
 MapView.prototype.renderMap = function() {
@@ -36,17 +32,20 @@ MapView.prototype.bindEvents = function() {
 MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
 
-  marker.on('click', function(evt) {
+  marker.on('click', (evt) => {
+    const marker = evt.target;
+
+    console.dir(marker);
     const ourMap = evt.target._map
     const latLong = evt.target._latlng
     ourMap.setView(latLong, 10);
+    // this allows new popup with image to be created after closing previous popup
+    marker.unbindPopup();
+    const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'/>");
+    popup.openPopup();
 
-    // this renders detailed popup
-    const popup = Leaflet.popup()
-      .setLatLng(latLong)
-      .setContent(`${cryptid.name}`)
-      .openOn(ourMap);
-    });
+    console.dir(marker);
+  });
 
 
   marker.on('mouseover', function(evt){
@@ -63,14 +62,6 @@ MapView.prototype.renderSidebar = function() {
   });
   this.myMap.addControl(ourSidebar);
   ourSidebar.show();
-};
-
-MapView.prototype.renderDetailedPopup = function (cryptid, ourMap) {
-  console.log(ourMap);
-  const popup = Leaflet.popup()
-    .setLatLng(cryptid._latlng)
-    .setContent(`${cryptid.name}`)
-    .openOn(ourMap);
 };
 
 
