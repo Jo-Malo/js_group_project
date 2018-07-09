@@ -8,22 +8,23 @@
   color : white;
   background:
   position: absolute;
-  top: 10px;
-  bottom: 50px;
+  top: 0;
+  bottom: 0;
   left: 10Px;
   width: 200px;
-  overflow: scroll;
+  overflow-y: : scroll;
   z-index: 2000;
   float:left;
   cursor: pointer;
+
 }
 .sidebar li:hover {
     color: #DAF7A6;
 }
 
 .popupImage {
-   max-width: 200px;
-   max-height: 200px;
+   width: 200px;
+   height: 300px;
 }
 
 div.leaflet-popup-content-wrapper{
