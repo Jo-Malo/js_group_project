@@ -14,4 +14,5 @@
   overflow: scroll;
   z-index: 2000;
   float:left;
+  cursor: pointer;
 }
