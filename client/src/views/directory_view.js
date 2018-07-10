@@ -17,6 +17,24 @@ DirectoryView.prototype.populateDirectory = function() {
       const text = `${cryptid.name}`;
       const newLI = this.createNewElement('li', text);
 
+      newLI.id = cryptid._id;
+
+      this.directoryContainer.appendChild(newLI);
+
+      newLI.addEventListener('click', (evt) => {
+        PubSub.publish('DirectoryView:li-clicked', newLI.id);
+      });
+    });
+  });
+
+  PubSub.subscribe('Cryptid:filtered-data-loaded', (evt) => {
+    const cryptidData = evt.detail;
+    console.log(cryptidData);
+    this.directoryContainer.innerHTML=" ";
+    cryptidData[0].forEach((cryptid) => {
+      console.log(cryptid);
+      const text = `${cryptid.name}`;
+      const newLI = this.createNewElement('li', text);
 
       newLI.id = cryptid._id;
 

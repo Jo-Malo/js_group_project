@@ -12,11 +12,9 @@ Cryptid.prototype.bindEvents = function () {
     const selectedContinent = evt.detail;
     this.getCryptidData();
     PubSub.subscribe('Cryptid:data-set', (evt) => {
-      console.log(evt.detail);
       const filteredData = this.filterDataByContinent(evt.detail, selectedContinent);
-      console.log(filteredData);
+      PubSub.publish('Cryptid:filtered-data-loaded', filteredData);
     })
-    console.log(this.cryptids);
     // console.log(this.filterDataByContinent(this.cryptids, selectedContinent));
   })
 
