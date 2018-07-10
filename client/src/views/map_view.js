@@ -67,7 +67,7 @@ MapView.prototype.renderPin = function(cryptid) {
     const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class='popupImage' " + "/>");
     console.log(popup);
     popup.openPopup();
-    
+
     PubSub.publish('MapView: Pin-Selected', cryptid)
   });
 
@@ -88,6 +88,7 @@ MapView.prototype.renderSidebar = function() {
   this.myMap.addControl(ourSidebar);
   ourSidebar.show();
 };
+
 
 
 module.exports = MapView;

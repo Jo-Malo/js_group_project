@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   mapView.bindEvents();
   mapView.zoomIn();
 
+
   const container = document.querySelector('#sidebar-list')
   const directoryView = new DirectoryView(container);
   directoryView.bindEvents();
