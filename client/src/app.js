@@ -2,6 +2,7 @@ const Cryptid = require('./models/cryptid.js');
 const CryptidView = require('./views/cryptid_view.js');
 const MapView = require('./views/map_view.js');
 const DirectoryView = require('./views/directory_view.js');
+const SelectView = require('./views/select_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Javascript Loaded');
@@ -18,12 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
   mapView.bindEvents();
   mapView.zoomIn();
 
-
   const container = document.querySelector('#sidebar-list')
   const directoryView = new DirectoryView(container);
   directoryView.bindEvents();
 
-
   const cryptidView = new CryptidView(container);
   cryptidView.bindEvents();
+
+  const selectContainer = document.querySelector('#continents');
+  const selectView = new SelectView(selectContainer);
+  selectView.bindEvents();
 });

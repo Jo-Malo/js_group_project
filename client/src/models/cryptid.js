@@ -7,6 +7,14 @@ const Cryptid = function(url) {
 };
 
 Cryptid.prototype.bindEvents = function () {
+  PubSub.subscribe('SelectView:select-change', (evt) => {
+    const selectedContinent = evt.detail;
+
+
+    
+  })
+
+
   PubSub.subscribe('DirectoryView:li-clicked', (evt) => {
     const request = new Request(this.url + `/${evt.detail}`)
     request.get()
