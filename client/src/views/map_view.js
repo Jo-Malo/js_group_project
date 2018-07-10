@@ -3,7 +3,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
-  this.cryptids = null
+  this.cryptids = null;
   this.myMap = Leaflet.map('map',{
     zoomControl:false
   }).setView([22, 200], 2);
@@ -28,17 +28,17 @@ MapView.prototype.renderMap = function() {
   }).addTo(this.myMap);
 
   // set the map it won't move,
-//   this.myMap.on('dragend', function onDragEnd(){
-//     var width = map.getBounds().getEast() - map.getBounds().getWest();
-//     var height = map.getBounds().getNorth() - map.getBounds().getSouth();
-//
-//     alert (
-//         'center:' + map.getCenter() +'\n'+
-//         'width:' + width +'\n'+
-//         'height:' + height +'\n'+
-//         'size in pixels:' + map.getSize()
-//     )});
-// };
+  // this.myMap.on('dragend', function onDragEnd(){
+  //   var width = map.getBounds().getEast() - map.getBounds().getWest();
+  //   var height = map.getBounds().getNorth() - map.getBounds().getSouth();
+  //
+  //   alert (
+  //       'center:' + map.getCenter() +'\n'+
+  //       'width:' + width +'\n'+
+  //       'height:' + height +'\n'+
+  //       'size in pixels:' + map.getSize()
+  //   )});
+};
 
 MapView.prototype.bindEvents = function() {
   PubSub.subscribe('Cryptid:data-loaded', (evt) => {
@@ -50,19 +50,22 @@ MapView.prototype.bindEvents = function() {
 }
 
 MapView.prototype.zoomIn = function(){
+
   PubSub.subscribe('Cryptid:data-selected',(evt) =>{
     const cryptid = evt.detail;
     const latlong = cryptid[0].coords;
     const marker = Leaflet.marker(latlong);
 
     this.myMap.setView(latlong,10);
-
+    console.log(cryptid);
 
     marker.unbindPopup();
+    console.log(marker);
+
     const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class='popupImage' " + "/>");
     console.log('I am here');
-    popup.openPopup();
     console.log(popup);
+    popup.openPopup();
   });
 
 };
