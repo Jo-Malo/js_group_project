@@ -7,6 +7,7 @@ const MapView = function() {
   this.markerLayer = Leaflet.layerGroup([]);
   this.markerArray = [];
   this.myMap = Leaflet.map('map',{
+    maxBounds:[ [-40, -100], [60, 100] ],
     zoomControl:false
   }).setView([22, 200], 2);
   // 22 ++ set the map down, 170 ++ set map to the left
@@ -25,21 +26,23 @@ MapView.prototype.renderMap = function() {
     accessToken: 'pk.eyJ1Ijoiam9tYWxvIiwiYSI6ImNqajlxenFjdjMzZGYza3BndDF0cHJwNG8ifQ.GxdRYwwkA1aQ4I4R1sOt3Q'
   }).addTo(this.myMap);
 
+
+
   Leaflet.control.zoom({
        position:'topright'
   }).addTo(this.myMap);
 
-  //set the map it will move
-  this.myMap.on('dragend', function onDragEnd(){
-    var width = map.getBounds().getEast() - map.getBounds().getWest();
-    var height = map.getBounds().getNorth() - map.getBounds().getSouth();
-
-    alert (
-        'center:' + map.getCenter() +'\n'+
-        'width:' + width +'\n'+
-        'height:' + height +'\n'+
-        'size in pixels:' + map.getSize()
-    )});
+  //set the map it won't move
+  // this.myMap.on('dragend', function onDragEnd(){
+  //   var width = map.getBounds().getEast() - map.getBounds().getWest();
+  //   var height = map.getBounds().getNorth() - map.getBounds().getSouth();
+  //
+  //   alert (
+  //       'center:' + map.getCenter() +'\n'+
+  //       'width:' + width +'\n'+
+  //       'height:' + height +'\n'+
+  //       'size in pixels:' + map.getSize()
+  //   )});
 };
 
 MapView.prototype.bindEvents = function() {
@@ -48,7 +51,7 @@ MapView.prototype.bindEvents = function() {
       this.myMap.removeLayer(marker);
     })
     this.markerArray = [];
-    
+
     this.cryptids = evt.detail;
 
     this.cryptids.forEach((cryptid) => {
@@ -78,11 +81,11 @@ MapView.prototype.zoomIn = function(){
 
     this.myMap.setView(latlong,10);
 
-    //still not showing when zoomIn
-    // marker.unbindPopup();
-    // const popup = marker.bindPopup("<img src='" + `${cryptid[0].imageSrc}` + "'" + " class='popupImage' " + "/>");
-    // popup.openPopup();
-    // console.log(popup);
+    // still not showing when zoomIn
+    marker.unbindPopup();
+    const popup = marker.bindPopup("<img src='" + `${cryptid[0].imageSrc}` + "'" + " class='popupImage' " + "/>");
+    popup.openPopup();
+    console.log(popup);
   });
 
 };
