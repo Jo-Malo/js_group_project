@@ -101,5 +101,16 @@ MapView.prototype.renderSidebar = function() {
 };
 
 
+MapView.prototype.zoomToOriginMap = function () {
+  this.myMap.on('click', ()=>{
+    this.myMap.setView([22, 170], 2);
+
+    // Leaflet.control.zoom({
+    //      position:'topright'
+    // }).addTo(this.myMap);
+
+  })
+};
+
 
 module.exports = MapView;

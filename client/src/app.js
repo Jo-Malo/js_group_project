@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   mapView.renderSidebar();
   mapView.bindEvents();
   mapView.zoomIn();
+  mapView.zoomToOriginMap();
 
 
   const container = document.querySelector('#sidebar-list')
