@@ -12,12 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
   cryptid.getData();
   cryptid.bindEvents();
   cryptid.showCryptidOnSidebar();
+  cryptid.reloadSidebar();
 
   const mapView = new MapView();
   mapView.renderMap();
   mapView.renderSidebar();
   mapView.bindEvents();
   mapView.zoomIn();
+  mapView.zoomToOriginMap();
 
   const container = document.querySelector('#sidebar-list')
   const directoryView = new DirectoryView(container);

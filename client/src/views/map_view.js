@@ -3,9 +3,10 @@ const PubSub = require('../helpers/pub_sub.js');
 const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
+  this.cryptids = null
   this.myMap = Leaflet.map('map',{
     zoomControl:false
-  }).setView([22, 170], 2);
+  }).setView([22, 200], 2);
   // 22 ++ set the map down, 170 ++ set map to the left
 }
 
@@ -26,12 +27,23 @@ MapView.prototype.renderMap = function() {
        position:'topright'
   }).addTo(this.myMap);
 
+  //set the map it will move
+  this.myMap.on('dragend', function onDragEnd(){
+    var width = map.getBounds().getEast() - map.getBounds().getWest();
+    var height = map.getBounds().getNorth() - map.getBounds().getSouth();
+
+    alert (
+        'center:' + map.getCenter() +'\n'+
+        'width:' + width +'\n'+
+        'height:' + height +'\n'+
+        'size in pixels:' + map.getSize()
+    )});
 };
 
 MapView.prototype.bindEvents = function() {
   PubSub.subscribe('Cryptid:data-loaded', (evt) => {
-    const cryptids = evt.detail;
-    cryptids.forEach((cryptid) => {
+    this.cryptids = evt.detail;
+    this.cryptids.forEach((cryptid) => {
       this.renderPin(cryptid);
     })
   });
@@ -89,6 +101,14 @@ MapView.prototype.renderSidebar = function() {
   ourSidebar.show();
 };
 
+
+MapView.prototype.zoomToOriginMap = function () {
+  this.myMap.on('click', ()=>{
+    this.myMap.setView([22, 200], 2);
+    console.log(this.cryptids);
+    PubSub.publish('MapView:reloadData', this.cryptids);
+  });
+};
 
 
 module.exports = MapView;
