@@ -9,8 +9,10 @@ DirectoryView.prototype.bindEvents = function () {
 };
 
 DirectoryView.prototype.populateDirectory = function() {
+  this.directoryContainer.innerHTML ='';
   PubSub.subscribe('Cryptid:data-loaded', (evt) => {
     const cryptidData = evt.detail;
+    this.directoryContainer.innerHTML=" ";
     cryptidData.forEach((cryptid) => {
       const text = `${cryptid.name}`;
       const newLI = this.createNewElement('li', text);

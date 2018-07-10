@@ -3,6 +3,7 @@ const PubSub = require('../helpers/pub_sub.js');
 const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
+  this.cryptids = null
   this.myMap = Leaflet.map('map',{
     zoomControl:false
   }).setView([22, 170], 2);
@@ -41,8 +42,8 @@ MapView.prototype.renderMap = function() {
 
 MapView.prototype.bindEvents = function() {
   PubSub.subscribe('Cryptid:data-loaded', (evt) => {
-    const cryptids = evt.detail;
-    cryptids.forEach((cryptid) => {
+    this.cryptids = evt.detail;
+    this.cryptids.forEach((cryptid) => {
       this.renderPin(cryptid);
     })
   });
@@ -104,12 +105,9 @@ MapView.prototype.renderSidebar = function() {
 MapView.prototype.zoomToOriginMap = function () {
   this.myMap.on('click', ()=>{
     this.myMap.setView([22, 170], 2);
-
-    // Leaflet.control.zoom({
-    //      position:'topright'
-    // }).addTo(this.myMap);
-
-  })
+    console.log(this.cryptids);
+    PubSub.publish('MapView:reloadData', this.cryptids);
+  });
 };
 
 

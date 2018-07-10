@@ -31,4 +31,15 @@ Cryptid.prototype.showCryptidOnSidebar = function () {
     PubSub.publish('Cryptid:data-selected', cryptid);
   })
 };
+
+
+Cryptid.prototype.reloadSidebar = function () {
+  PubSub.subscribe('MapView:reloadData',(evt)=>{
+    const cryptids = evt.detail;
+    console.log(cryptids);
+    PubSub.publish('Cryptid:data-loaded',cryptids)
+  })
+};
+
+
 module.exports = Cryptid;

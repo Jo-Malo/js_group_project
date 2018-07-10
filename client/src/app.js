@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   cryptid.getData();
   cryptid.bindEvents();
   cryptid.showCryptidOnSidebar();
+  cryptid.reloadSidebar();
 
   const mapView = new MapView();
   mapView.renderMap();
