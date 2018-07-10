@@ -62,10 +62,15 @@ MapView.prototype.zoomIn = function(){
     marker.unbindPopup();
     console.log(marker);
 
-    const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class='popupImage' " + "/>");
-    console.log('I am here');
-    console.log(popup);
-    popup.openPopup();
+    const locationIcon = Leaflet.icon({
+      iconUrl:'location_marker_icon.png',
+      iconSize: [24,36],
+      iconAnchor: [12,36]
+    });
+    // const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class='popupImage' " + "/>");
+    // console.log('I am here');
+    // console.log(popup);
+    // popup.openPopup();
   });
 
 };
