@@ -27,17 +27,17 @@ MapView.prototype.renderMap = function() {
        position:'topright'
   }).addTo(this.myMap);
 
-  //set the map it will move
-  this.myMap.on('dragend', function onDragEnd(){
-    var width = map.getBounds().getEast() - map.getBounds().getWest();
-    var height = map.getBounds().getNorth() - map.getBounds().getSouth();
-
-    alert (
-        'center:' + map.getCenter() +'\n'+
-        'width:' + width +'\n'+
-        'height:' + height +'\n'+
-        'size in pixels:' + map.getSize()
-    )});
+  //set the map it won't move
+  // this.myMap.on('dragend', function onDragEnd(){
+  //   var width = map.getBounds().getEast() - map.getBounds().getWest();
+  //   var height = map.getBounds().getNorth() - map.getBounds().getSouth();
+  //
+  //   alert (
+  //       'center:' + map.getCenter() +'\n'+
+  //       'width:' + width +'\n'+
+  //       'height:' + height +'\n'+
+  //       'size in pixels:' + map.getSize()
+  //   )});
 };
 
 MapView.prototype.bindEvents = function() {
@@ -57,11 +57,12 @@ MapView.prototype.zoomIn = function(){
 
     this.myMap.setView(latlong,10);
 
-    //still not showing when zoomIn
-    // marker.unbindPopup();
-    // const popup = marker.bindPopup("<img src='" + `${cryptid[0].imageSrc}` + "'" + " class='popupImage' " + "/>");
-    // popup.openPopup();
-    // console.log(popup);
+
+    marker.unbindPopup();
+    const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class='popupImage' " + "/>");
+    console.log('I am here');
+    popup.openPopup();
+    console.log(popup);
   });
 
 };
