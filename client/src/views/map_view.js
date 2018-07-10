@@ -6,7 +6,7 @@ const MapView = function() {
   this.cryptids = null
   this.myMap = Leaflet.map('map',{
     zoomControl:false
-  }).setView([22, 170], 2);
+  }).setView([22, 200], 2);
   // 22 ++ set the map down, 170 ++ set map to the left
 }
 
@@ -104,7 +104,7 @@ MapView.prototype.renderSidebar = function() {
 
 MapView.prototype.zoomToOriginMap = function () {
   this.myMap.on('click', ()=>{
-    this.myMap.setView([22, 170], 2);
+    this.myMap.setView([22, 200], 2);
     console.log(this.cryptids);
     PubSub.publish('MapView:reloadData', this.cryptids);
   });
