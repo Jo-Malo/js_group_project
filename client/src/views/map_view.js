@@ -4,6 +4,8 @@ const LeafletSidebar = require('leaflet-sidebar');
 
 const MapView = function() {
   this.cryptids = null
+  this.markerLayer = Leaflet.layerGroup([]);
+  this.markerArray = [];
   this.myMap = Leaflet.map('map',{
     zoomControl:false
   }).setView([22, 200], 2);
@@ -42,7 +44,26 @@ MapView.prototype.renderMap = function() {
 
 MapView.prototype.bindEvents = function() {
   PubSub.subscribe('Cryptid:data-loaded', (evt) => {
+    this.markerArray.forEach((marker) => {
+      this.myMap.removeLayer(marker);
+    })
+    this.markerArray = [];
+    
     this.cryptids = evt.detail;
+
+    this.cryptids.forEach((cryptid) => {
+      this.renderPin(cryptid);
+    })
+  });
+
+  PubSub.subscribe('Cryptid:filtered-data-loaded', (evt) => {
+    this.markerArray.forEach((marker) => {
+      this.myMap.removeLayer(marker);
+    })
+    this.markerArray = [];
+
+    this.cryptids = evt.detail[0];
+
     this.cryptids.forEach((cryptid) => {
       this.renderPin(cryptid);
     })
@@ -68,16 +89,17 @@ MapView.prototype.zoomIn = function(){
 
 MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
+  this.markerArray.push(marker);
+  this.markerLayer.addLayer(marker);
   marker.on('click', (evt) => {
     const marker = evt.target;
-    const ourMap = evt.target._map
-    const latLong = evt.target._latlng
+    const ourMap = evt.target._map;
+    const latLong = evt.target._latlng;
 
     ourMap.setView(latLong, 10);
     // this allows new popup with image to be created after closing previous popup
     marker.unbindPopup();
     const popup = marker.bindPopup("<img src='" + `${cryptid.imageSrc}` + "'" + " class='popupImage' " + "/>");
-    console.log(popup);
     popup.openPopup();
 
     PubSub.publish('MapView: Pin-Selected', cryptid)
@@ -105,7 +127,6 @@ MapView.prototype.renderSidebar = function() {
 MapView.prototype.zoomToOriginMap = function () {
   this.myMap.on('click', ()=>{
     this.myMap.setView([22, 200], 2);
-    console.log(this.cryptids);
     PubSub.publish('MapView:reloadData', this.cryptids);
   });
 };

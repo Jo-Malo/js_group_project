@@ -29,10 +29,8 @@ DirectoryView.prototype.populateDirectory = function() {
 
   PubSub.subscribe('Cryptid:filtered-data-loaded', (evt) => {
     const cryptidData = evt.detail;
-    console.log(cryptidData);
     this.directoryContainer.innerHTML=" ";
     cryptidData[0].forEach((cryptid) => {
-      console.log(cryptid);
       const text = `${cryptid.name}`;
       const newLI = this.createNewElement('li', text);
 

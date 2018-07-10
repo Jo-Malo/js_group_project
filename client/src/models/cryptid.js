@@ -45,7 +45,6 @@ Cryptid.prototype.getCryptidData = function() {
       this.cryptids = [];
       this.cryptids.push(data);
       PubSub.publish('Cryptid:data-set', data);
-      console.log(this.cryptids);
   });
 };
 
@@ -64,10 +63,9 @@ Cryptid.prototype.showCryptidOnSidebar = function () {
 
 
 Cryptid.prototype.reloadSidebar = function () {
-  PubSub.subscribe('MapView:reloadData',(evt)=>{
+  PubSub.subscribe('MapView:reloadData', (evt) => {
     const cryptids = evt.detail;
-    console.log(cryptids);
-    PubSub.publish('Cryptid:data-loaded',cryptids)
+    PubSub.publish('Cryptid:data-loaded', cryptids)
   })
 };
 
