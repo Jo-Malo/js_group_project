@@ -32,17 +32,6 @@ MapView.prototype.renderMap = function() {
        position:'topright'
   }).addTo(this.myMap);
 
-  //set the map it won't move
-  // this.myMap.on('dragend', function onDragEnd(){
-  //   var width = map.getBounds().getEast() - map.getBounds().getWest();
-  //   var height = map.getBounds().getNorth() - map.getBounds().getSouth();
-  //
-  //   alert (
-  //       'center:' + map.getCenter() +'\n'+
-  //       'width:' + width +'\n'+
-  //       'height:' + height +'\n'+
-  //       'size in pixels:' + map.getSize()
-  //   )});
 };
 
 MapView.prototype.bindEvents = function() {
