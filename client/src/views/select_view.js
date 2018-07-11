@@ -15,6 +15,9 @@ SelectView.prototype.bindEvents = function () {
 
   this.continentSelectContainer.addEventListener('change', (evt) => {
     const selectedContinent = evt.target.value;
+    this.countrySelectContainer.selectedIndex = 0;
+    this.habitatSelectContainer.selectedIndex = 0;
+    this.typeSelectContainer.selectedIndex = 0;
     PubSub.publish('SelectView:continent-select-change', selectedContinent);
   })
 
@@ -25,6 +28,9 @@ SelectView.prototype.bindEvents = function () {
 
   this.countrySelectContainer.addEventListener('change', (evt) => {
     const selectedCountry = evt.target.value;
+    this.continentSelectContainer.selectedIndex = 0;
+    this.habitatSelectContainer.selectedIndex = 0;
+    this.typeSelectContainer.selectedIndex = 0;
     PubSub.publish('SelectView:country-select-change', selectedCountry);
   })
 
@@ -35,6 +41,9 @@ SelectView.prototype.bindEvents = function () {
 
   this.habitatSelectContainer.addEventListener('change', (evt) => {
     const selectedHabitat = evt.target.value;
+    this.continentSelectContainer.selectedIndex = 0;
+    this.countrySelectContainer.selectedIndex = 0;
+    this.typeSelectContainer.selectedIndex = 0;
     PubSub.publish('SelectView:habitat-select-change', selectedHabitat);
   })
 
@@ -46,6 +55,9 @@ SelectView.prototype.bindEvents = function () {
 
   this.typeSelectContainer.addEventListener('change', (evt) => {
     const selectedType = evt.target.value;
+    this.continentSelectContainer.selectedIndex = 0;
+    this.habitatSelectContainer.selectedIndex = 0;
+    this.countrySelectContainer.selectedIndex = 0;
     PubSub.publish('SelectView:type-select-change', selectedType);
   })
 };

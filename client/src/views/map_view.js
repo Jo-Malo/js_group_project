@@ -9,7 +9,7 @@ const MapView = function() {
   this.myMap = Leaflet.map('map',{
     maxBounds:[ [-80, -160], [120, 160] ],
     zoomControl:false
-  }).setView([22, 200], 2);
+  }).setView([22, 200], 3);
   // 22 ++ set the map down, 170 ++ set map to the left
 }
 
