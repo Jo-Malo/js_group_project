@@ -252,5 +252,5 @@ db.cryptids.insertMany([
     coords: [53.1424 , -7.6921],
     desc: "A headstone, found in Conwall cemetery in Glenade, County Leitrim depicts the Dobhar-chú and is related to a tale of an attack on a local woman by the creature. The stone is claimed to be the headstone of a grave of a woman killed by the Dobhar-chú in the 17th century. Her name was supposedly Gráinne. Her husband supposedly heard her scream as she was washing clothes down at Glenade lough, County Leitrim and came to her aid. When he got there she was already dead, with the Dobhar-chú upon her bloody and mutilated body.",
     imageSrc:"/images/dobhar-chu.jpg"
-  }
+  )
 ]);
