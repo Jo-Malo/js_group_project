@@ -3,6 +3,7 @@ const CryptidView = require('./views/cryptid_view.js');
 const MapView = require('./views/map_view.js');
 const DirectoryView = require('./views/directory_view.js');
 const SelectView = require('./views/select_view.js');
+const AboutView = require('./views/about_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Javascript Loaded');
@@ -34,4 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const typeSelectContainer = document.querySelector('#types');
   const selectView = new SelectView(continentSelectContainer, countrySelectContainer, habitatSelectContainer, typeSelectContainer);
   selectView.bindEvents();
+
+  const aboutView = new AboutView();
+  aboutView.bindEvents();
+
 });

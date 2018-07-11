@@ -7,7 +7,7 @@ const MapView = function() {
   this.markerLayer = Leaflet.layerGroup([]);
   this.markerArray = [];
   this.myMap = Leaflet.map('map',{
-    maxBounds:[ [-60, -160], [100, 160] ],
+    maxBounds:[ [-80, -160], [120, 160] ],
     zoomControl:false
   }).setView([22, 200], 2);
   // 22 ++ set the map down, 170 ++ set map to the left
@@ -22,7 +22,7 @@ MapView.prototype.renderMap = function() {
 
     maxZoom: 9,
     minZoom: 2,
-    id: 'mapbox.satellite',
+    id: 'mapbox.streets-satellite',
     accessToken: 'pk.eyJ1Ijoiam9tYWxvIiwiYSI6ImNqajlxenFjdjMzZGYza3BndDF0cHJwNG8ifQ.GxdRYwwkA1aQ4I4R1sOt3Q'
   }).addTo(this.myMap);
 
@@ -130,6 +130,5 @@ MapView.prototype.zoomToOriginMap = function () {
     PubSub.publish('MapView:reloadData', this.cryptids);
   });
 };
-
 
 module.exports = MapView;

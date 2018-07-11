@@ -2,22 +2,25 @@
   height: 100vh;//100% view height
   width: 100vw;// 100% view width
   z-index: 0;
+  top: 0px;
 }
 
 #sidebar {
-  color : white;
-  background:
+  color: white;
+  background-color:rgba(0, 0, 0, 0.75);
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 10Px;
+  left: 0px;
   width: 200px;
   overflow-y: scroll;
   z-index: 2000;
   float:left;
   cursor: pointer;
-
+  text-align: left;
+  padding-right: 60px;
 }
+
 .sidebar li:hover {
     color: #DAF7A6;
 }
@@ -32,4 +35,162 @@ div.leaflet-popup-content-wrapper{
   display: flex;
   flex: wrapper;
   flex-width: wrapper;
+}
+
+.pointer {
+  width: 30px;
+  height: 50px;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  background: #FFBB00;
+}
+
+header::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.logo {
+  float: left;
+  padding: 10px 0;
+  height: 60px;
+  width: 160px;
+}
+
+nav {
+  float: right;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 23px;
+
+  position: relative;
+}
+
+nav a {
+  color: #444;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+nav a:hover {
+  color: #000;
+}
+
+nav a::before {
+  content: '';
+  display: block;
+  height: 5px;
+  background-color: #444;
+
+  position: absolute;
+  top: 0;
+  width: 0%;
+
+  transition: all ease-in-out 250ms;
+}
+
+nav a:hover::before {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  background: #222;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+}
+
+label {
+  color: white;
+}
+
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+}
+
+.active, .accordion:hover {
+    background-color: #ccc;
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+
+.h1 a{
+  color: #FFBB00;
+  background-color:rgba(0, 0, 0, 0.75);
+  text-align: right;
+}
+
+/* width */
+#sidebar::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+#sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+#sidebar::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
