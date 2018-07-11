@@ -81,14 +81,10 @@ MapView.prototype.zoomIn = function(){
 };
 
 var customIcon = Leaflet.icon({
-    iconUrl: '/images/custom_pin.png',
-    shadowUrl: '/images/custom_pin_shadow.png',
-
-    iconSize:     [38, 95], // size of the icon
-    shadowSize:   [50, 64], // size of the shadow
-    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-    shadowAnchor: [4, 62],  // the same for the shadow
-    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    iconUrl: '/images/custom_pin_filled.png',
+    iconSize:     [20, 40], // size of the icon
+    iconAnchor:   [8, 40], // point of the icon which will correspond to marker's location
+    popupAnchor:  [06, -45] // point from which the popup should open relative to the iconAnchor
 });
 
 MapView.prototype.renderPin = function(cryptid) {
