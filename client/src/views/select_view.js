@@ -1,8 +1,10 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const SelectView = function(continentSelectContainer, countrySelectContainer) {
+const SelectView = function(continentSelectContainer, countrySelectContainer, habitatSelectContainer, typeSelectContainer) {
   this.continentSelectContainer = continentSelectContainer;
   this.countrySelectContainer = countrySelectContainer;
+  this.habitatSelectContainer = habitatSelectContainer;
+  this.typeSelectContainer = typeSelectContainer;
 }
 
 SelectView.prototype.bindEvents = function () {
@@ -13,11 +15,9 @@ SelectView.prototype.bindEvents = function () {
 
   this.continentSelectContainer.addEventListener('change', (evt) => {
     const selectedContinent = evt.target.value;
-    console.dir(evt.target);
-    console.dir(evt.target[evt.target])
-    console.log(selectedContinent);
     PubSub.publish('SelectView:continent-select-change', selectedContinent);
   })
+
 
   PubSub.subscribe('Cryptid:countries-ready', (evt) => {
     this.populateCountrySelect(evt.detail);
@@ -27,7 +27,29 @@ SelectView.prototype.bindEvents = function () {
     const selectedCountry = evt.target.value;
     PubSub.publish('SelectView:country-select-change', selectedCountry);
   })
+
+
+  PubSub.subscribe('Cryptid:habitats-ready', (evt) => {
+    this.populateHabitatSelect(evt.detail);
+  });
+
+  this.habitatSelectContainer.addEventListener('change', (evt) => {
+    const selectedHabitat = evt.target.value;
+    PubSub.publish('SelectView:habitat-select-change', selectedHabitat);
+  })
+
+
+  PubSub.subscribe('Cryptid:types-ready', (evt) => {
+    console.log('populating');
+    this.populateTypeSelect(evt.detail);
+  });
+
+  this.typeSelectContainer.addEventListener('change', (evt) => {
+    const selectedType = evt.target.value;
+    PubSub.publish('SelectView:type-select-change', selectedType);
+  })
 };
+
 
 SelectView.prototype.populateContinentSelect = function (continents) {
   continents.forEach((continent, index) => {
@@ -45,6 +67,7 @@ SelectView.prototype.createContinentOption = function (continent, index) {
   return option;
 };
 
+
 SelectView.prototype.populateCountrySelect = function (countries) {
   countries.forEach((country, index) => {
     if (country !== null) {
@@ -57,6 +80,40 @@ SelectView.prototype.populateCountrySelect = function (countries) {
 SelectView.prototype.createCountryOption = function (country, index) {
   const option = document.createElement('option');
   option.textContent = country;
+  option.value = index;
+  return option;
+};
+
+
+SelectView.prototype.populateTypeSelect = function (types) {
+  types.forEach((type, index) => {
+    if (type !== null) {
+      const option = this.createTypeOption(type, index);
+      this.typeSelectContainer.appendChild(option);
+    }
+  })
+};
+
+SelectView.prototype.createTypeOption = function (type, index) {
+  const option = document.createElement('option');
+  option.textContent = type;
+  option.value = index;
+  return option;
+};
+
+
+SelectView.prototype.populateHabitatSelect = function (habitats) {
+  habitats.forEach((habitat, index) => {
+    if (habitat !== null) {
+      const option = this.createHabitatOption(habitat, index);
+      this.habitatSelectContainer.appendChild(option);
+    }
+  })
+};
+
+SelectView.prototype.createHabitatOption = function (habitat, index) {
+  const option = document.createElement('option');
+  option.textContent = habitat;
   option.value = index;
   return option;
 };

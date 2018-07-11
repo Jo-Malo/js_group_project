@@ -78,11 +78,21 @@ MapView.prototype.zoomIn = function(){
     popup.openPopup();
     console.log(popup);
   });
-
 };
 
+var customIcon = Leaflet.icon({
+    iconUrl: '/images/custom_pin.png',
+    shadowUrl: '/images/custom_pin_shadow.png',
+
+    iconSize:     [38, 95], // size of the icon
+    shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});
+
 MapView.prototype.renderPin = function(cryptid) {
-  const marker = Leaflet.marker(cryptid.coords);
+  const marker = Leaflet.marker(cryptid.coords, {icon: customIcon});
   this.markerArray.push(marker);
   this.markerLayer.addLayer(marker);
 

@@ -31,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const continentSelectContainer = document.querySelector('#continents');
   const countrySelectContainer = document.querySelector('#countries');
-  const selectView = new SelectView(continentSelectContainer, countrySelectContainer);
+  const habitatSelectContainer = document.querySelector('#habitats');
+  const typeSelectContainer = document.querySelector('#types');
+  const selectView = new SelectView(continentSelectContainer, countrySelectContainer, habitatSelectContainer, typeSelectContainer);
   selectView.bindEvents();
 
   const aboutView = new AboutView();
