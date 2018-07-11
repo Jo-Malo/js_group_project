@@ -82,9 +82,9 @@ MapView.prototype.zoomIn = function(){
 
 var customIcon = Leaflet.icon({
     iconUrl: '/images/custom_pin_filled.png',
-    iconSize:     [20, 40], // size of the icon
+    iconSize:     [20, 35], // size of the icon
     iconAnchor:   [8, 40], // point of the icon which will correspond to marker's location
-    popupAnchor:  [06, -45] // point from which the popup should open relative to the iconAnchor
+    popupAnchor:  [2, -45] // point from which the popup should open relative to the iconAnchor
 });
 
 MapView.prototype.renderPin = function(cryptid) {
