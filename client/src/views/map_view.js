@@ -21,7 +21,7 @@ MapView.prototype.renderMap = function() {
 
     maxZoom: 9,
     minZoom: 2,
-    id: 'mapbox.satellite',
+    id: 'mapbox.streets-satellite',
     accessToken: 'pk.eyJ1Ijoiam9tYWxvIiwiYSI6ImNqajlxenFjdjMzZGYza3BndDF0cHJwNG8ifQ.GxdRYwwkA1aQ4I4R1sOt3Q'
   }).addTo(this.myMap);
 
@@ -48,7 +48,7 @@ MapView.prototype.bindEvents = function() {
       this.myMap.removeLayer(marker);
     })
     this.markerArray = [];
-    
+
     this.cryptids = evt.detail;
 
     this.cryptids.forEach((cryptid) => {
@@ -130,6 +130,5 @@ MapView.prototype.zoomToOriginMap = function () {
     PubSub.publish('MapView:reloadData', this.cryptids);
   });
 };
-
 
 module.exports = MapView;

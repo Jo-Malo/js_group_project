@@ -9,8 +9,10 @@ CryptidView.prototype.bindEvents = function() {
     const cryptidData = evt.detail[0];
     this.cryptidContainer.innerHTML = "";
     this.createNewElement('h2', cryptidData.name);
+    this.createNewElement('p', cryptidData.continent,'Continent:');
     this.createNewElement('p', cryptidData.country,'Country:');
     this.createNewElement('p', cryptidData.habitat,'Habitat:');
+    this.createNewElement('p', cryptidData.type,'Type:');
     this.createNewElement('p', cryptidData.desc, 'Info:');
 
   })
