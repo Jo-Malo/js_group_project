@@ -2,6 +2,17 @@ use cryptid_hub;
 db.dropDatabase();
 
 db.cryptids.insertMany([
+
+  {
+    name: "Am Fear Liath Mòr",
+    country: "Scotland",
+    continent: "Europe",
+    habitat: "Mountains",
+    type: "Spirit",
+    coords:[57.070361 , -3.669111],
+    desc: "Although there have been many purported encounters with Am Fear Liath Mòr, few eyewitnesses have seen the creature. Those who have describe it as an extremely tall figure covered with short hair, or as an unseen presence that causes uneasy feelings in people who climb the mountain. Other eyewitnesses describe it as a large humanoid standing over ten feet tall and having olive toned skin with long arms and broad shoulders. Evidence of the existence of this creature is limited to various sightings and a few photographs of unusual footprints. Nearly all reports of Am Fear Liath Mòr include the sound of footsteps crunching in the gravel just out of sight.",
+    imageSrc:"/images/Am Fear Liath Mòr.png"
+  },
   {
     name: "Baba Yaga",
     country: "Russia",
@@ -53,6 +64,16 @@ db.cryptids.insertMany([
     imageSrc:"/images/chupacabra.jpg"
   },
   {
+    name: "Dobhar-chú",
+    country: "Ireland",
+    continent: "Europe",
+    habitat: "Fresh-water",
+    type: "Beast",
+    coords: [53.1424 , -7.6921],
+    desc: "A headstone, found in Conwall cemetery in Glenade, County Leitrim depicts the Dobhar-chú and is related to a tale of an attack on a local woman by the creature. The stone is claimed to be the headstone of a grave of a woman killed by the Dobhar-chú in the 17th century. Her name was supposedly Gráinne. Her husband supposedly heard her scream as she was washing clothes down at Glenade lough, County Leitrim and came to her aid. When he got there she was already dead, with the Dobhar-chú upon her bloody and mutilated body.",
+    imageSrc:"/images/dobhar-chu.jpg"
+  },
+  {
     name:"Kongomato",
     country:"Zambia",
     continent:"Africa",
@@ -71,6 +92,16 @@ db.cryptids.insertMany([
     coords: [70.5110, 3.5156],
     desc: "The kraken is a legendary cephalopod-like sea monster of giant size that is said to dwell off the coasts of Norway and Greenland. Authors over the years have postulated that the legend originated from sightings of giant squids that may grow to 13–15 meters (40–50 feet) in length. The sheer size and fearsome appearance attributed to the kraken have made it a common ocean-dwelling monster in various fictional works.",
     imageSrc:"/images/kraken.jpg"
+  },
+  {
+  name: "Likho",
+  country: "Ukraine",
+  continent: "Europe",
+  habitat: "Urban",
+  type: "Hybrid",
+  coords:[48.3794, 31.1656],
+  desc:'Likho, liho (Russian: Лихо, Belarusian: лі́ха, Polish: licho) is an embodiment of evil fate and misfortune in Slavic mythology, a creature with one eye, often depicted as an old, skinny woman in black (Лихо одноглазое, One-eyed Likho) or as an evil male goblin of forests. Rather than being included in the major canon of the Slavic belief system, the Likho is traditionally found in fairy tales.',
+  imageSrc:"/images/likho.jpg"
   },
   {
     name: "Mapinguari",
@@ -183,6 +214,16 @@ db.cryptids.insertMany([
     imageSrc:'/images/wendigo.jpg'
   },
   {
+   name: "Yacumama",
+   country: "Brazil",
+   continent: "South America",
+   habitat: "Fresh-water",
+   type: "Hybrid",
+   coords:[-2.4088, -50.6581],
+   desc:'Likho, liho (Russian: Лихо, Belarusian: лі́ха, Polish: licho) is an embodiment of evil fate and misfortune in Slavic mythology, a creature with one eye, often depicted as an old, skinny woman in black (Лихо одноглазое, One-eyed Likho) or as an evil male goblin of forests. Rather than being included in the major canon of the Slavic belief system, the Likho is traditionally found in fairy tales.',
+   imageSrc:"/images/yacumama.jpg"
+  },
+  {
     name: "Yamata no Orochi",
     country: "Japan",
     continent: "Asia",
@@ -199,7 +240,17 @@ db.cryptids.insertMany([
     habitat: "Mountains",
     type: "Humanoid",
     coords: [30.1534 , 88.7879],
-    desc: "In the folklore of Nepal, the Yeti (/ˈjɛti/)[3] or Abominable Snowman (Nepali: हिममानव himamānav, lit. 'snow man') is an ape-like entity, taller than an average human, that is said to inhabit the Himalayan region of Nepal, Bhutan, and Tibet. The names Yeti and Meh-Teh are commonly used by the people indigenous to the region, and are part of their history and mythology. Stories of the Yeti first emerged as a facet of Western popular culture in the 19th century.",
+    desc: "In the folklore of Nepal, the Yeti (/ˈjɛti/)or Abominable Snowman (Nepali: हिममानव himamānav, lit. 'snow man') is an ape-like entity, taller than an average human, that is said to inhabit the Himalayan region of Nepal, Bhutan, and Tibet. The names Yeti and Meh-Teh are commonly used by the people indigenous to the region, and are part of their history and mythology. Stories of the Yeti first emerged as a facet of Western popular culture in the 19th century.",
     imageSrc:"/images/yeti.jpg"
+  },
+  {
+    name: "Dobhar-chú",
+    country: "Ireland",
+    continent: "Europe",
+    habitat: "Fresh-water",
+    type: "Beast",
+    coords: [53.1424 , -7.6921],
+    desc: "A headstone, found in Conwall cemetery in Glenade, County Leitrim depicts the Dobhar-chú and is related to a tale of an attack on a local woman by the creature. The stone is claimed to be the headstone of a grave of a woman killed by the Dobhar-chú in the 17th century. Her name was supposedly Gráinne. Her husband supposedly heard her scream as she was washing clothes down at Glenade lough, County Leitrim and came to her aid. When he got there she was already dead, with the Dobhar-chú upon her bloody and mutilated body.",
+    imageSrc:"/images/dobhar-chu.jpg"
   }
 ]);
