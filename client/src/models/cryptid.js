@@ -7,6 +7,7 @@ const Cryptid = function(url) {
   this.cryptids = [];
   this.continents = [];
   this.countries = [];
+  this.habitats = [];
 };
 
 Cryptid.prototype.bindEvents = function () {
@@ -15,8 +16,6 @@ Cryptid.prototype.bindEvents = function () {
   PubSub.subscribe('SelectView:continent-select-change', (evt) => {
     const selectedContinentIndex = evt.detail;
     const selectedContinent = this.continents[selectedContinentIndex];
-    console.log(this.continents);
-    console.log(evt.detail);
     this.getCryptidData();
     PubSub.subscribe('Cryptid:data-set', (evt) => {
       const filteredData = this.filterDataByContinent(evt.detail, selectedContinent);
@@ -29,8 +28,17 @@ Cryptid.prototype.bindEvents = function () {
     const selectedCountry = this.countries[selectedCountryIndex];
     this.getCryptidData();
     PubSub.subscribe('Cryptid:data-set', (evt) => {
-      console.log(evt.detail);
       const filteredData = this.filterDataByCountry(evt.detail, selectedCountry);
+      PubSub.publish('Cryptid:filtered-data-loaded', filteredData);
+    })
+  })
+
+  PubSub.subscribe('SelectView:habitat-select-change', (evt) => {
+    const selectedHabitatIndex = evt.detail;
+    const selectedHabitat = this.habitats[selectedHabitatIndex];
+    this.getCryptidData();
+    PubSub.subscribe('Cryptid:data-set', (evt) => {
+      const filteredData = this.filterDataByHabitat(evt.detail, selectedHabitat);
       PubSub.publish('Cryptid:filtered-data-loaded', filteredData);
     })
   })
@@ -52,6 +60,7 @@ Cryptid.prototype.getData = function() {
       this.cryptids = data;
       this.publishContinents(data);
       this.publishCountries(data);
+      this.publishHabitats(data)
   });
 };
 
@@ -64,8 +73,6 @@ Cryptid.prototype.getCryptidData = function() {
       PubSub.publish('Cryptid:data-set', data);
   });
 };
-
-
 
 
 Cryptid.prototype.continentList = function () {
@@ -85,6 +92,7 @@ Cryptid.prototype.publishContinents = function (data) {
   PubSub.publish('Cryptid:continents-ready', this.continents);
 }
 
+
 Cryptid.prototype.countryList = function () {
   const allCountries = this.cryptids.map(cryptid => cryptid.country);
   return allCountries;
@@ -103,6 +111,24 @@ Cryptid.prototype.publishCountries = function (data) {
 }
 
 
+Cryptid.prototype.habitatList = function () {
+  const allHabitats = this.cryptids.map(cryptid => cryptid.habitat);
+  return allHabitats;
+}
+
+Cryptid.prototype.uniqueHabitatList = function () {
+  return this.habitatList().filter((cryptid, index, array) => {
+    return array.indexOf(cryptid) === index;
+  });
+}
+
+Cryptid.prototype.publishHabitats = function (data) {
+  this.cryptids = data;
+  this.habitats = this.uniqueHabitatList();
+  PubSub.publish('Cryptid:habitats-ready', this.habitats);
+}
+
+
 
 Cryptid.prototype.filterDataByContinent = function (data, continent) {
   let filteredData = [];
@@ -116,8 +142,11 @@ Cryptid.prototype.filterDataByCountry = function (data, country) {
   return filteredData;
 };
 
-
-
+Cryptid.prototype.filterDataByHabitat = function (data, habitat) {
+  let filteredData = [];
+  filteredData.push(data.filter(cryptid => cryptid.habitat === habitat));
+  return filteredData;
+};
 
 
 Cryptid.prototype.showCryptidOnSidebar = function () {
