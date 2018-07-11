@@ -1,9 +1,10 @@
 const PubSub = require('../helpers/pub_sub.js');
 
-const SelectView = function(continentSelectContainer, countrySelectContainer, habitatSelectContainer) {
+const SelectView = function(continentSelectContainer, countrySelectContainer, habitatSelectContainer, typeSelectContainer) {
   this.continentSelectContainer = continentSelectContainer;
   this.countrySelectContainer = countrySelectContainer;
   this.habitatSelectContainer = habitatSelectContainer;
+  this.typeSelectContainer = typeSelectContainer;
 }
 
 SelectView.prototype.bindEvents = function () {
@@ -35,6 +36,17 @@ SelectView.prototype.bindEvents = function () {
   this.habitatSelectContainer.addEventListener('change', (evt) => {
     const selectedHabitat = evt.target.value;
     PubSub.publish('SelectView:habitat-select-change', selectedHabitat);
+  })
+
+
+  PubSub.subscribe('Cryptid:types-ready', (evt) => {
+    console.log('populating');
+    this.populateTypeSelect(evt.detail);
+  });
+
+  this.typeSelectContainer.addEventListener('change', (evt) => {
+    const selectedType = evt.target.value;
+    PubSub.publish('SelectView:type-select-change', selectedType);
   })
 };
 
@@ -68,6 +80,23 @@ SelectView.prototype.populateCountrySelect = function (countries) {
 SelectView.prototype.createCountryOption = function (country, index) {
   const option = document.createElement('option');
   option.textContent = country;
+  option.value = index;
+  return option;
+};
+
+
+SelectView.prototype.populateTypeSelect = function (types) {
+  types.forEach((type, index) => {
+    if (type !== null) {
+      const option = this.createTypeOption(type, index);
+      this.typeSelectContainer.appendChild(option);
+    }
+  })
+};
+
+SelectView.prototype.createTypeOption = function (type, index) {
+  const option = document.createElement('option');
+  option.textContent = type;
   option.value = index;
   return option;
 };
