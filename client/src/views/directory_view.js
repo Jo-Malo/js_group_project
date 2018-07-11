@@ -28,9 +28,9 @@ DirectoryView.prototype.populateDirectory = function() {
   });
 
   PubSub.subscribe('Cryptid:filtered-data-loaded', (evt) => {
-    const cryptidData = evt.detail;
+    const cryptidData = evt.detail[0];
     this.directoryContainer.innerHTML=" ";
-    cryptidData[0].forEach((cryptid) => {
+    cryptidData.forEach((cryptid) => {
       const text = `${cryptid.name}`;
       const newLI = this.createNewElement('li', text);
 

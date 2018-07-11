@@ -42,6 +42,7 @@ MapView.prototype.bindEvents = function() {
     this.markerArray = [];
 
     this.cryptids = evt.detail;
+    console.log('unfiltered objects in cryptids array: ' + this.cryptids.length);
 
     this.cryptids.forEach((cryptid) => {
       this.renderPin(cryptid);
@@ -55,6 +56,7 @@ MapView.prototype.bindEvents = function() {
     this.markerArray = [];
 
     this.cryptids = evt.detail[0];
+    console.log('filtered objects in cryptids array: ' + this.cryptids.length);
 
     this.cryptids.forEach((cryptid) => {
       this.renderPin(cryptid);
@@ -83,6 +85,7 @@ MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
   this.markerArray.push(marker);
   this.markerLayer.addLayer(marker);
+
   marker.on('click', (evt) => {
     const marker = evt.target;
     const ourMap = evt.target._map;
@@ -96,7 +99,6 @@ MapView.prototype.renderPin = function(cryptid) {
 
     PubSub.publish('MapView: Pin-Selected', cryptid)
   });
-
 
   marker.on('mouseover', function(evt){
     marker.unbindPopup();
