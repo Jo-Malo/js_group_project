@@ -7,6 +7,7 @@ const MapView = function() {
   this.markerLayer = Leaflet.layerGroup([]);
   this.markerArray = [];
   this.myMap = Leaflet.map('map',{
+    maxBounds:[ [-60, -160], [100, 160] ],
     zoomControl:false
   }).setView([22, 200], 2);
   // 22 ++ set the map down, 170 ++ set map to the left
@@ -25,21 +26,12 @@ MapView.prototype.renderMap = function() {
     accessToken: 'pk.eyJ1Ijoiam9tYWxvIiwiYSI6ImNqajlxenFjdjMzZGYza3BndDF0cHJwNG8ifQ.GxdRYwwkA1aQ4I4R1sOt3Q'
   }).addTo(this.myMap);
 
+
+
   Leaflet.control.zoom({
        position:'topright'
   }).addTo(this.myMap);
 
-  //set the map it will move
-  this.myMap.on('dragend', function onDragEnd(){
-    var width = map.getBounds().getEast() - map.getBounds().getWest();
-    var height = map.getBounds().getNorth() - map.getBounds().getSouth();
-
-    alert (
-        'center:' + map.getCenter() +'\n'+
-        'width:' + width +'\n'+
-        'height:' + height +'\n'+
-        'size in pixels:' + map.getSize()
-    )});
 };
 
 MapView.prototype.bindEvents = function() {
@@ -50,6 +42,7 @@ MapView.prototype.bindEvents = function() {
     this.markerArray = [];
 
     this.cryptids = evt.detail;
+    console.log('unfiltered objects in cryptids array: ' + this.cryptids.length);
 
     this.cryptids.forEach((cryptid) => {
       this.renderPin(cryptid);
@@ -63,6 +56,7 @@ MapView.prototype.bindEvents = function() {
     this.markerArray = [];
 
     this.cryptids = evt.detail[0];
+    console.log('filtered objects in cryptids array: ' + this.cryptids.length);
 
     this.cryptids.forEach((cryptid) => {
       this.renderPin(cryptid);
@@ -78,11 +72,11 @@ MapView.prototype.zoomIn = function(){
 
     this.myMap.setView(latlong,10);
 
-    //still not showing when zoomIn
-    // marker.unbindPopup();
-    // const popup = marker.bindPopup("<img src='" + `${cryptid[0].imageSrc}` + "'" + " class='popupImage' " + "/>");
-    // popup.openPopup();
-    // console.log(popup);
+    // still not showing when zoomIn
+    marker.unbindPopup();
+    const popup = marker.bindPopup("<img src='" + `${cryptid[0].imageSrc}` + "'" + " class='popupImage' " + "/>");
+    popup.openPopup();
+    console.log(popup);
   });
 
 };
@@ -91,6 +85,7 @@ MapView.prototype.renderPin = function(cryptid) {
   const marker = Leaflet.marker(cryptid.coords);
   this.markerArray.push(marker);
   this.markerLayer.addLayer(marker);
+
   marker.on('click', (evt) => {
     const marker = evt.target;
     const ourMap = evt.target._map;
@@ -104,7 +99,6 @@ MapView.prototype.renderPin = function(cryptid) {
 
     PubSub.publish('MapView: Pin-Selected', cryptid)
   });
-
 
   marker.on('mouseover', function(evt){
     marker.unbindPopup();
