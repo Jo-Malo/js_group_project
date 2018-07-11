@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const cryptidView = new CryptidView(container);
   cryptidView.bindEvents();
 
-  const selectContainer = document.querySelector('#continents');
-  const selectView = new SelectView(selectContainer);
+  const continentSelectContainer = document.querySelector('#continents');
+  const countrySelectContainer = document.querySelector('#countries');
+  const selectView = new SelectView(continentSelectContainer, countrySelectContainer);
   selectView.bindEvents();
 });
