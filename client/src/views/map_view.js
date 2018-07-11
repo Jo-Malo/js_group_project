@@ -7,7 +7,7 @@ const MapView = function() {
   this.markerLayer = Leaflet.layerGroup([]);
   this.markerArray = [];
   this.myMap = Leaflet.map('map',{
-    maxBounds:[ [-60, -160], [100, 160] ],
+    maxBounds:[ [-80, -160], [120, 160] ],
     zoomControl:false
   }).setView([22, 200], 2);
   // 22 ++ set the map down, 170 ++ set map to the left
