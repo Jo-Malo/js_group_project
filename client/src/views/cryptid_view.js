@@ -14,7 +14,6 @@ CryptidView.prototype.bindEvents = function() {
     this.createNewElement('p', cryptidData.habitat,'Habitat:');
     this.createNewElement('p', cryptidData.type,'Type:');
     this.createNewElement('p', cryptidData.desc, 'Info:');
-
   })
 };
 
